@@ -1,37 +1,49 @@
 package com.ubl.studentweb.domain;
 
-import java.time.LocalDate;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.experimental.Accessors;
+
+
 
 public class Student {
-    private String fullName;
-    private String address;
-    private LocalDate dateofBirth;
+
     private String nim;
 
-    public Student(){
+    @NotBlank(message = "full name is required")
+    @Size(min = 3, max = 50)
+    private String fullName;
+
+    private String address;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Date of Birth is required")
+    private Date dateOfBirth;
+    
+
+    public Student() {
     }
 
-    public String getFullName(){
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName){
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-    public String getAddress(){
+
+    public String getAddress() {
         return address;
     }
-    public void setAddress(String address){
-        this.address=address;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public LocalDate getDateofBirth() {
-        return dateofBirth;
-    }
-
-    public void setDateofBirth(LocalDate dateofBirth) {
-        this.dateofBirth = dateofBirth;
-    }
 
     public String getNim() {
         return nim;
@@ -41,5 +53,12 @@ public class Student {
         this.nim = nim;
     }
 
-    
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
 }
